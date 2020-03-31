@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+model Tag {
+  id       Int       @id @default(autoincrement())
+  slug     String    @unique
+  workouts Workout[]
+}
+
+model Workout {
+  id        Int               @id @default(autoincrement())
+  name      String
+  tags      Tag[]
+  exercises WorkoutExercise[]
+}
+
+model WorkoutExercise {
+  id      Int     @id @default(autoincrement())
+  name    String
+  workout Workout
+}

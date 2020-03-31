@@ -1,0 +1,16 @@
+version: '3'
+services:
+  workoutsdb:
+    image: mariadb
+    restart: always
+    ports:
+    - "3310:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: prisma
+      MYSQL_PASSWORD: prisma
+      MYSQL_DATABASE: workouts
+    volumes:
+      - workoutsdb:/var/lib/mysql
+volumes:
+  workoutsdb:

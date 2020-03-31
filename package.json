@@ -1,0 +1,46 @@
+{
+  "name": "typescript-graphql",
+  "scripts": {
+    "start": "yarn local",
+    "//--- Local Development ---": "",
+    "local": "dotenv -e config/local.env -- ts-node-dev --no-notify --respawn --transpileOnly src/server",
+    "setup": "yarn local:db:up && dotenv -e config/local.env -- prisma2 migrate up --experimental",
+    "uninstall": "docker-compose -f config/local.yml down -v && yarn clean",
+    "clean": "rm -rf dist",
+    "local:generate": "dotenv -e config/local.env -- yarn _generate",
+    "local:db:up": "dotenv -e config/local.env -- docker-compose -f config/local.yml up -d --build",
+    "local:migrate:save": "dotenv -e config/local.env -- prisma2 migrate save --experimental",
+    "local:migrate:up": "dotenv -e config/local.env -- prisma2 migrate up --experimental && yarn local:generate",
+    "//--- Production ---": " @TODO ~ Ajustar scripts de produção ",
+    "prod:build": "yarn clean && dotenv -e config/production.env -- yarn _generate && dotenv -e config/production.env -- tsc",
+    "prod:generate": "dotenv -e config/production.env -- yarn _generate",
+    "//--- Generates (Prisma & Nexus) ---": "",
+    "_generate": "yarn _generate:prisma && yarn _generate:nexus",
+    "_generate:prisma": "prisma2 generate",
+    "_generate:nexus": "ts-node --transpile-only src/schema"
+  },
+  "dependencies": {
+    "@prisma/client": "2.0.0-preview025",
+    "@types/node-fetch": "2.5.5",
+    "apollo-server": "2.11.0",
+    "dotenv-cli": "^3.1.0",
+    "graphql": "14.6.0",
+    "nexus": "0.12.0-rc.14",
+    "nexus-prisma": "0.11.1"
+  },
+  "devDependencies": {
+    "@prisma/cli": "2.0.0-preview025",
+    "@types/node": "12.12.32",
+    "ts-node": "8.8.1",
+    "ts-node-dev": "1.0.0-pre.44",
+    "typescript": "3.8.3"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
