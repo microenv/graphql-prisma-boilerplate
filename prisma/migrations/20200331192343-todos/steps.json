@@ -21,7 +21,7 @@
         "source": "db"
       },
       "argument": "url",
-      "value": "\"mysql://prisma:prisma@localhost:3310/workouts\""
+      "value": "env(\"DB_URL\")"
     },
     {
       "tag": "CreateModel",
@@ -91,17 +91,17 @@
     {
       "tag": "CreateField",
       "model": "Tag",
-      "field": "workouts",
-      "type": "Workout",
+      "field": "todos",
+      "type": "Todo",
       "arity": "List"
     },
     {
       "tag": "CreateModel",
-      "model": "Workout"
+      "model": "Todo"
     },
     {
       "tag": "CreateField",
-      "model": "Workout",
+      "model": "Todo",
       "field": "id",
       "type": "Int",
       "arity": "Required"
@@ -111,7 +111,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Workout",
+          "model": "Todo",
           "field": "id"
         },
         "directive": "id"
@@ -122,7 +122,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Workout",
+          "model": "Todo",
           "field": "id"
         },
         "directive": "default"
@@ -134,7 +134,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Workout",
+          "model": "Todo",
           "field": "id"
         },
         "directive": "default"
@@ -144,85 +144,17 @@
     },
     {
       "tag": "CreateField",
-      "model": "Workout",
+      "model": "Todo",
       "field": "name",
       "type": "String",
       "arity": "Required"
     },
     {
       "tag": "CreateField",
-      "model": "Workout",
+      "model": "Todo",
       "field": "tags",
       "type": "Tag",
       "arity": "List"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Workout",
-      "field": "exercises",
-      "type": "WorkoutExercise",
-      "arity": "List"
-    },
-    {
-      "tag": "CreateModel",
-      "model": "WorkoutExercise"
-    },
-    {
-      "tag": "CreateField",
-      "model": "WorkoutExercise",
-      "field": "id",
-      "type": "Int",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "WorkoutExercise",
-          "field": "id"
-        },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "WorkoutExercise",
-          "field": "id"
-        },
-        "directive": "default"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "WorkoutExercise",
-          "field": "id"
-        },
-        "directive": "default"
-      },
-      "argument": "",
-      "value": "autoincrement()"
-    },
-    {
-      "tag": "CreateField",
-      "model": "WorkoutExercise",
-      "field": "name",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "WorkoutExercise",
-      "field": "workout",
-      "type": "Workout",
-      "arity": "Required"
     }
   ]
 }

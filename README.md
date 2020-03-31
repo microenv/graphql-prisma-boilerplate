@@ -6,12 +6,19 @@ A great boilerplate to start your new graphql project.
 
 ```shell
 yarn install
-yarn setup
+yarn local:db:up
+```
+
+Wait until database is ready.
+
+```shell
+yarn local:migrate:up
 yarn local
 ```
 
 - `yarn install` - Install yarn dependencies
-- `yarn setup` - Create a new database (with docker-compose) and run `prisma2 generate`
+- `yarn local:db:up` - Create a new database (with docker-compose)
+- `yarn local:migrate:up` - Send migrations to database (Create schema in the database)
 - `yarn local` - Run local server // @TODO ~ put this inside docker compose with volume and nodemon
 - `yarn uninstall` - Remove docker containers (then you can safely remove this folder)
 
@@ -38,7 +45,7 @@ Somethings are not automatic. Here is what you need to do when you do what you d
 | When you... | Do this!
 | --- | ---
 | Change file: `prisma/schema.prisma` | Run `yarn local:migrate:save && yarn local:migrate:up`
-| Change file: `src/schema.ts` | Run `yarn generate`
+| Change file: `src/schema.ts` | Run `yarn local:generate`
 | Change file: `local.yml` | Run `yarn local:db:up`
 
 - `yarn local:migrate:save` - Update the folder prisma/migrations with the new schema definition on schema.prisma (`prisma2 migrate save --experimental`)
@@ -72,3 +79,4 @@ When you query `todoLists` or `todoItems` you need to send an array with tags. T
 - Steps to deploy in production
 - Use graphql-yoga instead of Apollo Server
 - Adjust the initial schema to make it simple
+- Add seed todos
