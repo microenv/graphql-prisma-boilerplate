@@ -22,6 +22,12 @@ yarn local
 - `yarn local` - Run local server // @TODO ~ put this inside docker compose with volume and nodemon
 - `yarn uninstall` - Remove docker containers (then you can safely remove this folder)
 
+## Example Queries
+
+You can see a list of test queries to execute on graphql playground.
+
+See [Example Queries](./docs/ExampleQueries.md)
+
 ## Tech stack
 
 - Typescript
