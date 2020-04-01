@@ -45,7 +45,6 @@ Somethings are not automatic. Here is what you need to do when you do what you d
 | When you... | Do this!
 | --- | ---
 | Change file: `prisma/schema.prisma` | Run `yarn local:migrate:save && yarn local:migrate:up`
-| Change file: `src/schema.ts` | Run `yarn local:generate`
 | Change file: `local.yml` | Run `yarn local:db:up`
 
 - `yarn local:migrate:save` - Update the folder prisma/migrations with the new schema definition on schema.prisma (`prisma2 migrate save --experimental`)
@@ -70,13 +69,13 @@ X-Masterkey: XXXXXXX
 
 > This project comes with a default schema with "tags". This allows you to immediately test your API and maybe you even like the initial schema and start building your software with tags...
 
-A `TodoItem` may have as many tags as the client wants.
+A `Todo` may have as many tags as the client wants.
 
-When you query `todoLists` or `todoItems` you need to send an array with tags. The list/item must be related to **all the tags you send** (but it may have more).
+When you query `todos(tags:["tag1","tag2"]) { ... }` you need to send an array with tags. The todos must be related to **all the tags you send** (but it may have more).
+
+If you pass an empty tags array, then all todos are returned.
 
 ## @TODO
 
 - Steps to deploy in production
-- Use graphql-yoga instead of Apollo Server
-- Adjust the initial schema to make it simple
 - Add seed todos

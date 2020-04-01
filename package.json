@@ -1,43 +1,34 @@
 {
-  "name": "typescript-graphql",
+  "name": "graphql-prisma2-boilerplate",
   "scripts": {
     "start": "yarn local",
     "//--- Local Development ---": "",
-    "local": "dotenv -e config/local.env -- ts-node-dev --no-notify --respawn --transpileOnly src/server",
+    "local": "dotenv -e config/local.env -- nexus dev",
     "local:db:up": "dotenv -e config/local.env -- docker-compose -f config/local.yml up -d --build",
-    "local:generate": "dotenv -e config/local.env -- yarn _generate",
+    "local:generate": "dotenv -e config/local.env -- prisma2 generate && dotenv -e config/local.env -- nexus build",
     "local:migrate:save": "dotenv -e config/local.env -- prisma2 migrate save --experimental",
     "local:migrate:up": "dotenv -e config/local.env -- prisma2 migrate up --experimental && yarn local:generate",
     "//--- Production ---": " @TODO ~ Ajustar scripts de produção ",
-    "prod:generate": "dotenv -e config/production.env -- yarn _generate",
-    "prod:build": "yarn clean && dotenv -e config/production.env -- yarn _generate && dotenv -e config/production.env -- tsc",
-    "//--- Generates (Prisma & Nexus) ---": "",
-    "_generate": "yarn _generate:prisma && yarn _generate:nexus",
-    "_generate:prisma": "prisma2 generate",
-    "_generate:nexus": "ts-node --transpile-only src/schema",
+    "prod:build": "yarn clean && yarn prod:generate",
+    "prod:start": "dotenv -e config/production.env -- node node_modules/.build",
+    "prod:generate": "dotenv -e config/production.env -- prisma2 generate && dotenv -e config/production.env -- nexus build",
     "//--- Clear and uninstall ---": "",
     "clean": "rm -rf dist",
     "uninstall": "docker-compose -f config/local.yml down --remove-orphans -v && yarn clean"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-preview025",
-    "@types/node-fetch": "2.5.5",
-    "apollo-server": "2.11.0",
     "dotenv-cli": "^3.1.0",
-    "graphql": "14.6.0",
-    "nexus": "0.12.0-rc.14",
-    "nexus-prisma": "0.11.1"
+    "nexus-future": "^0.12.0",
+    "nexus-plugin-prisma": "^0.5.1"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0-preview025",
-    "@types/node": "12.12.32",
-    "ts-node": "8.8.1",
-    "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.8.3"
+    "husky": "^4.2.3",
+    "prettier": "^2.0.2",
+    "pretty-quick": "^2.0.1"
   },
   "prettier": {
-    "singleQuote": true,
     "semi": false,
+    "singleQuote": true,
     "trailingComma": "all"
   },
   "engines": {

@@ -1,14 +1,16 @@
-import { ApolloServer } from 'apollo-server'
-import { schema } from './schema'
-import { createContext } from './context'
+import { server, settings } from 'nexus-future';
 
-const port = Number(process.env.PORT) || 4000;
+async function main() {
+  const port = Number(process.env.PORT || 3500);
 
-new ApolloServer({ schema, context: createContext }).listen(
-  { port },
-  () => {
-    console.log(
-      `🚀 Server ready at: http://localhost:${port}\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-apollo-server#using-the-graphql-api`,
-    );
-  },
-)
+  settings.change({
+    server: {
+      port,
+      playground: true,
+    },
+  });
+
+  // console.log(`🚀 Server ready at: http://localhost:${port} ⭐️`);
+}
+
+main();
