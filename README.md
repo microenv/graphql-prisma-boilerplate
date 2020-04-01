@@ -28,11 +28,18 @@ You can see a list of test queries to execute on graphql playground.
 
 See [Example Queries](./docs/ExampleQueries.md)
 
-## Tech stack
+## Tech Stack
 
 - Typescript
 - Nexus (nexus-future)
 - Docker compose - Right now it's only creating a new database // @TODO ~ put this server inside a container and create a volume
+
+## System Requirements
+
+- Node
+- Yarn (or npm)
+- Docker compose
+- A developer (did you get it?)
 
 ## Environment Variables
 
