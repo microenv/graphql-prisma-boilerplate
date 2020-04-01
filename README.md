@@ -31,8 +31,7 @@ See [Example Queries](./docs/ExampleQueries.md)
 ## Tech stack
 
 - Typescript
-- Apollo Server (graphql) // @TODO ~ use graphql-yoga
-- Nexus - Generate graphql's file `schema.graphql` from the nexus schema on `src/schema.ts`
+- Nexus (nexus-future)
 - Docker compose - Right now it's only creating a new database // @TODO ~ put this server inside a container and create a volume
 
 ## Environment Variables
